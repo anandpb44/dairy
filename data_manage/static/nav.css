@@ -1,0 +1,51 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 100px;
+    height: 100vh; /* Full height */
+    background-color: #73c1ee;
+    position: fixed; /* Fixed position on the left */
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+}
+
+/* Sidebar Navigation Links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+}
+.sidebar ul li img{
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #444;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 220px; /* Offset for sidebar */
+    padding: 20px;
+}
