@@ -7,6 +7,7 @@ from django.conf import settings
 import math,random
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.shortcuts import render, get_object_or_404
 
 
 
@@ -101,3 +102,15 @@ def add_img(req):
     else:
         form = ImageForm()
     return render(req,'add_img.html',{'form':form})
+def add_message(req):
+    if req.method =='POST':
+        form=DiaryEntryForm(req.POST)
+        if form.is_valid():
+            message=form.save(commit=False)
+            message.user=req.user
+            message.save()
+            return redirect(home)
+    else:
+        form=DiaryEntryForm()
+    return render(req,'add_mes.html',{'form':form})
+

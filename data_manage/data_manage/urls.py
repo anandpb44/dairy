@@ -28,6 +28,8 @@ urlpatterns = [
     path('validate/<name>/<password>/<email>/<otp>',views.validate,name="validate"),
     path('add_doc',views.add_doc),
     path('add_img',views.add_img),
+    path('add_mes',views.add_message),
+    path('message/<int:id>',views.message),
 
 ]
 

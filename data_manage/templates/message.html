@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ diary_entry.title }}</title>
+</head>
+<body>
+    <h1>{{ diary_entry.title }}</h1>
+    <p><strong>Created on:</strong> {{ diary_entry.created_at }}</p>
+    <h3>Diary Content:</h3>
+    <p>{{ messages.0 }}</p>  <!-- Display the main diary entry content -->
+
+    <h3>Messages:</h3>
+    <ul>
+        {% for message in messages|slice:"1:" %}  <!-- Display only appended messages -->
+            <li>{{ message }}</li>
+        {% empty %}
+            <li>No messages yet.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Add a Message:</h3>
+    <form action="{% url 'add_message' id=message.id %}" method="post">
+        {% csrf_token %}
+        <textarea name="message" required></textarea>
+        <button type="submit">Add Message</button>
+    </form>
+</body>
+</html>
