@@ -11,6 +11,7 @@ from django.shortcuts import render, get_object_or_404
 
 
 
+
 # User Login
 def user_login(req):
     if req.method == "POST":
@@ -20,7 +21,7 @@ def user_login(req):
         user = authenticate(req, username=username, password=password)
         if user is not None:
             login(req, user)
-            messages.success(req, "Login successful!")
+            # messages.success(req, "Login successful!")
             return redirect(home)  # Change 'home' to your actual homepage
         else:
             messages.error(req, "Invalid username or password!")
@@ -113,4 +114,27 @@ def add_message(req):
     else:
         form=DiaryEntryForm()
     return render(req,'add_mes.html',{'form':form})
+
+def document_list(req):
+    documents = Document.objects.filter(user=req.user)
+    
+    for document in documents:
+        if document.file.name.endswith('.pdf'):
+            document.file_type = 'pdf'
+        elif document.file.name.endswith('.doc') or document.file.name.endswith('.docx'):
+            document.file_type = 'doc'
+        else:
+            document.file_type = 'other'
+            
+    return render(req, 'document_list.html', {'documents': documents})
+
+def image_list(req):
+    # Fetch all images uploaded by the logged-in user
+    images = Image.objects.filter(user=req.user)
+    return render(req, 'image_list.html', {'images': images})
+
+def message_list(req):
+    # Fetch all messages (diary entries) uploaded by the logged-in user
+    messages = DiaryEntry.objects.filter(user=req.user)
+    return render(req, 'message_list.html', {'messages': messages})
 

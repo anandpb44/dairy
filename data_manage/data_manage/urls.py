@@ -29,8 +29,9 @@ urlpatterns = [
     path('add_doc',views.add_doc),
     path('add_img',views.add_img),
     path('add_mes',views.add_message),
-    path('message/<int:id>',views.message),
-
+    path('documents/', views.document_list, name='document_list'),
+    path('images/', views.image_list, name='image_list'),
+    path('messages/', views.message_list, name='message_list'),
 ]
 
 

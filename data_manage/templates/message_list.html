@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+</head>
+<body>
+    <h2>Your Messages</h2>
+{% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>
+            <strong>{{ message.title }}</strong><br>
+            {{ message.content }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No messages available.</p>
+{% endif %}
+
+</body>
+</html>

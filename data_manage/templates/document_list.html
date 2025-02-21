@@ -1,0 +1,65 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files</title>
+    <link rel="stylesheet" href="{% static 'doc_list.css' %}">
+</head>
+<body>
+    <h2>Uploaded Documents</h2>
+{% if documents %}
+    <ul>
+    {% for document in documents %}
+        <li>
+            <strong>{{ document.title }}</strong> 
+            <a href="{{ document.file.url }}" target="_blank">Download</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No documents uploaded.</p>
+{% endif %}
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Files</title>
+    <link rel="stylesheet" href="{% static 'doc_list.css' %}">
+</head>
+<body>
+    <h2>Uploaded Documents</h2>
+
+    {% if documents %}
+        <ul>
+        {% for document in documents %}
+            <li>
+                <strong>{{ document.title }}</strong> 
+
+                {% if document.file_type == 'pdf' %}
+                    <!-- Show PDF inline -->
+                    <embed src="{{ document.file.url }}" type="application/pdf" width="600" height="400">
+                {% elif document.file_type == 'doc' %}
+                    <!-- Show DOC/DOCX as a download link -->
+                    <a href="{{ document.file.url }}" target="_blank">Download {{ document.title }} (Word Document)</a>
+                {% else %}
+                    <!-- For unsupported file types -->
+                    <a href="{{ document.file.url }}" target="_blank">Download</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents uploaded.</p>
+    {% endif %}
+
+</body>
+</html>
