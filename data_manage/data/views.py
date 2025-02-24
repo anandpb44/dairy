@@ -78,7 +78,8 @@ def validate(req,name,password,email,otp):
         return render(req,'validate.html',{'name':name,"pass":password,'emai':email,'otp':otp})
 
 def home(req):
-    return render(req,'home.html')
+    user=User.objects.all()
+    return render(req,'home.html',{'user':user})
 
 def add_doc(req):
     if req.method == 'POST':
@@ -116,13 +117,15 @@ def add_message(req):
     return render(req,'add_mes.html',{'form':form})
 
 def document_list(req):
-    documents = Document.objects.filter(user=req.user)
+    documents = Document.objects.filter(user=req.user)[::-1]
     
     for document in documents:
         if document.file.name.endswith('.pdf'):
             document.file_type = 'pdf'
-        elif document.file.name.endswith('.doc') or document.file.name.endswith('.docx'):
+        elif document.file.name.endswith('.doc') :
             document.file_type = 'doc'
+        elif document.file.name.endswith('.docx'):
+            document.file_type='docx'
         else:
             document.file_type = 'other'
             
@@ -130,7 +133,8 @@ def document_list(req):
 
 def image_list(req):
     # Fetch all images uploaded by the logged-in user
-    images = Image.objects.filter(user=req.user)
+    images = Image.objects.filter(user=req.user)[::-1]
+    
     return render(req, 'image_list.html', {'images': images})
 
 def message_list(req):

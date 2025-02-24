@@ -8,7 +8,7 @@
 
 /* Sidebar Navigation */
 .sidebar {
-    width: 100px;
+    width: 200px;
     height: 100vh; /* Full height */
     background-color: #73c1ee;
     position: fixed; /* Fixed position on the left */

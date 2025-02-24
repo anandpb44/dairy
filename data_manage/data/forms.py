@@ -1,5 +1,7 @@
 from django import forms
 from .models import *
+
+
 class DocumentForm(forms.ModelForm):
     class Meta:
         model=Document
@@ -14,6 +16,7 @@ class DocumentForm(forms.ModelForm):
                 raise ValidationError("Only PDF, DOC, and DOCX files are allowed.")
         return file
 
+
 class ImageForm(forms.ModelForm):
     class Meta:
         model=Image
@@ -27,6 +30,7 @@ class ImageForm(forms.ModelForm):
             if extension not in allowed_extensions:
                 raise ValidationError("Only JPG, JPEG, and PNG images are allowed.")
         return image
+
 
 class DiaryEntryForm(forms.ModelForm):
     class Meta:

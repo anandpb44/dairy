@@ -6,7 +6,7 @@ body {
     box-sizing: border-box;
 }
 .container {
-    width: 80%;
+    width: 200px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -67,3 +67,70 @@ h2 {
 .back-btn:hover {
     background-color: #0056b3;
 }
+/* Custom styles for document cards */
+.card {
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Title styling */
+.card-title {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Image styling */
+.card-img-top {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* Styling for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 300px; /* Limit width of cards on mobile */
+    }
+}
+
+/* For medium and larger screens */
+@media (min-width: 769px) {
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    /* Ensure at least 5 cards per row on larger screens */
+    .container.mt-3 {
+        flex: 1 1 18%; /* Ensures 5 cards per row by giving each card 18% width */
+    }
+
+    /* Ensure card width doesn't exceed 200px on smaller screens */
+    .card {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* Large screens (to make sure 5 cards are displayed) */
+@media (min-width: 1200px) {
+    .container.mt-3 {
+        flex: 1 1 18%; /* Further ensure 5 cards in a row */
+    }
+}
+
