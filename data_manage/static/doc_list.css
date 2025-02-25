@@ -1,136 +1,90 @@
+/* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f7fc;
+    background-color: #f8f9fa;
+    color: #333;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
+
 .container {
-    width: 200px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     padding: 20px;
 }
+
+/* Heading styles */
 h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-.file-list {
-    list-style-type: none;
-    padding: 0;
-}
-.file-item {
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.file-item a {
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-}
-.file-item a:hover {
-    background-color: #45a049;
-}
-.no-files {
-    text-align: center;
-    font-size: 18px;
-    color: #888;
-}
-.header {
-    padding: 10px;
-    text-align: center;
-    background-color: #4CAF50;
-    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #495057;
     margin-bottom: 30px;
 }
-.back-btn {
-    margin-top: 20px;
-    display: block;
-    text-align: center;
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+
+/* Card container styles */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
-.back-btn:hover {
-    background-color: #0056b3;
-}
-/* Custom styles for document cards */
+
+/* Individual card styles */
 .card {
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Title styling */
-.card-title {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-/* Image styling */
 .card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #343a40;
+}
+
+/* Bootstrap column sizing adjustment */
+.col-md-3 {
+    flex: 1 1 calc(25% - 20px);
+}
+
+@media (max-width: 768px) {
+    .col-md-3 {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .col-md-3 {
+        flex: 1 1 100%;
+    }
+}
+
+/* Empty state (no documents) */
+p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    text-align: center;
+}
+
+/* Optional: Add custom icon styles */
+.card-img-top img {
     width: 100%;
     height: auto;
-    max-height: 200px;
-    object-fit: contain;
 }
-
-/* Styling for smaller screens */
-@media (max-width: 768px) {
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card {
-        width: 100%;
-        max-width: 300px; /* Limit width of cards on mobile */
-    }
-}
-
-/* For medium and larger screens */
-@media (min-width: 769px) {
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-
-    /* Ensure at least 5 cards per row on larger screens */
-    .container.mt-3 {
-        flex: 1 1 18%; /* Ensures 5 cards per row by giving each card 18% width */
-    }
-
-    /* Ensure card width doesn't exceed 200px on smaller screens */
-    .card {
-        width: 100%;
-        max-width: 200px;
-    }
-}
-
-/* Large screens (to make sure 5 cards are displayed) */
-@media (min-width: 1200px) {
-    .container.mt-3 {
-        flex: 1 1 18%; /* Further ensure 5 cards in a row */
-    }
-}
-

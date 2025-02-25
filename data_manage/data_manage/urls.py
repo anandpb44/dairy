@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register',views.register),
     path('',views.user_login),
-    path('logout',views.logout),
+    path('logout',views.user_logout),
     path('home',views.home),
     path('validate/<name>/<password>/<email>/<otp>',views.validate,name="validate"),
     path('add_doc',views.add_doc),
@@ -32,6 +32,7 @@ urlpatterns = [
     path('documents/', views.document_list, name='document_list'),
     path('images/', views.image_list, name='image_list'),
     path('messages/', views.message_list, name='message_list'),
+    path('mess_delete/<mid>',views.mess_delete),
 ]
 
 

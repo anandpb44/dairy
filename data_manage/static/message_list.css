@@ -1,0 +1,90 @@
+/* General body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #4A90E2;
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4A90E2;
+}
+
+/* Message container styles */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual message card styles */
+.message {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 6px solid #4A90E2; /* Blue border for emphasis */
+    overflow: hidden;  /* Ensure no content escapes the card */
+}
+
+.message:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.message strong {
+    font-size: 1.2rem;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.message-content {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    word-wrap: break-word; /* Prevents long words from breaking out of the card */
+}
+
+/* No messages available styles */
+p {
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .message {
+        padding: 15px;
+    }
+
+    .message strong {
+        font-size: 1.1rem;
+    }
+
+    .message-content {
+        font-size: 0.95rem;
+    }
+}
