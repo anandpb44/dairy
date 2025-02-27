@@ -5,6 +5,7 @@ from .forms import *
 from django.http import HttpResponse
 from django.conf import settings
 import math,random
+import os
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
@@ -20,6 +21,7 @@ def user_login(req):
 
         user = authenticate(req, username=username, password=password)
         if user is not None:
+            req.session['user']=username
             login(req, user)
             # messages.success(req, "Login successful!")
             return redirect(home)  # Change 'home' to your actual homepage
@@ -78,7 +80,7 @@ def validate(req,name,password,email,otp):
         return render(req,'validate.html',{'name':name,"pass":password,'emai':email,'otp':otp})
 
 def home(req):
-    data=User.objects.all()
+    data=User.objects.get(username=req.session['user'])
     return render(req,'home.html',{'data':data})
 
 def add_doc(req):
@@ -142,7 +144,22 @@ def message_list(req):
     messages = DiaryEntry.objects.filter(user=req.user)
     return render(req, 'message_list.html', {'messages': messages})
 
+
 def mess_delete(req,mid):
     data=DiaryEntry.objects.get(pk=mid)
     data.delete()
     return redirect(message_list)
+
+
+def doc_delete(req,id):
+    data=Document.objects.get(pk=id)
+    data.delete()
+    return redirect(document_list)
+
+
+def img_delete(req,img_id):
+    data=Image.objects.get(pk=img_id)
+    file=data.image.path
+    os.remove(file)
+    data.delete()
+    return redirect(image_list)

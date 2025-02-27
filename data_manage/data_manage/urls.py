@@ -33,6 +33,9 @@ urlpatterns = [
     path('images/', views.image_list, name='image_list'),
     path('messages/', views.message_list, name='message_list'),
     path('mess_delete/<mid>',views.mess_delete),
+    path('doc_delete/<id>',views.doc_delete),
+    path('img_delete/<img_id>',views.img_delete),
+    
 ]
 
 
