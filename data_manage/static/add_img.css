@@ -1,0 +1,101 @@
+/* General form styling */
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #e6f0ff, #c0d9f7);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+form:hover {
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #4a90e2;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Styling form fields */
+form input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #4a90e2;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #555;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Focused file input */
+form input[type="file"]:focus {
+    border-color: #4CAF50;
+    background-color: #e9f7e9;
+    outline: none;
+}
+
+/* Error messages */
+.error {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Button styling */
+form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Button hover effect */
+form button:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+}
+
+/* Image preview styling */
+#imagePreview {
+    display: none;
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+/* Image preview on hover */
+#imagePreview:hover {
+    opacity: 0.8;
+}
+
+/* Label for image input */
+form div label {
+    font-size: 16px;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Container for form input */
+form div {
+    margin-bottom: 25px;
+}

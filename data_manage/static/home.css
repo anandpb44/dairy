@@ -1,0 +1,123 @@
+.sidebar {
+    width: 150px; /* Sidebar width */
+    position: fixed; /* Fix the sidebar on the left */
+    top: 0;
+    left: 0;
+    height: 100%; /* Full height */
+    background-color: #44b9f0; /* Dark background */
+    padding-top: 20px;
+    z-index: 1000;
+}
+
+/* Sidebar List */
+.sidebar ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    padding: 10px 20px;
+    text-align: center;
+}
+
+/* Sidebar Links */
+.sidebar a {
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    display: block; /* Make the link block-level */
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.sidebar a:hover {
+    background-color: #961717; /* Darken the background when hovered */
+
+    border-radius:30px;
+}
+
+.sidebar img {
+    width: 30px; /* Set a fixed size for icons */
+    height: auto;
+    margin-bottom: 5px; /* Space between icon and text */
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Cards Container with Flexbox */
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 120px 10px;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow cards to wrap when screen size is smaller */
+}
+
+/* Card Styles */
+.card {
+    width: 30%; /* Default width for 3 cards per row */
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-img-top {
+
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 10px;
+    text-align: center;
+}
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px #44b9f0;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;  /* Full width */
+        height: auto; /* Adjust height */
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row; /* Align items in a row */
+        justify-content: space-around;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        padding: 10px;
+    }
+
+    .sidebar a {
+        padding: 10px 15px;
+    }
+
+    .main-content {
+        margin-left: 0; /* Remove left margin */
+        margin-top: 60px; /* Push content down */
+    }
+}

@@ -1,11 +1,11 @@
 /* Sidebar Container */
 .sidebar {
-    width: 250px; /* Sidebar width */
+    width: 150px; /* Sidebar width */
     position: fixed; /* Fix the sidebar on the left */
     top: 0;
     left: 0;
     height: 100%; /* Full height */
-    background-color: #333; /* Dark background */
+    background-color: #44b9f0; /* Dark background */
     padding-top: 20px;
     z-index: 1000;
 }
@@ -33,7 +33,9 @@
 }
 
 .sidebar a:hover {
-    background-color: #575757; /* Darken the background when hovered */
+    background-color: #961717; /* Darken the background when hovered */
+
+    border-radius:30px;
 }
 
 .sidebar img {
@@ -42,34 +44,9 @@
     margin-bottom: 5px; /* Space between icon and text */
 }
 
-/* Responsive Design for Smaller Screens */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 200px; /* Make sidebar a bit narrower on smaller screens */
-    }
-}
 
-@media (max-width: 480px) {
-    .sidebar {
-        width: 100%; /* Full width for very small screens (mobile) */
-        height: auto;
-        position: relative;
-    }
 
-    .sidebar ul {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    }
+/* Tablet View (medium screens) */
 
-    .sidebar li {
-        padding: 10px;
-        flex: 1 0 33%; /* Make each link take up 1/3 of the space */
-        box-sizing: border-box;
-    }
 
-    .sidebar a {
-        font-size: 14px; /* Slightly smaller text on mobile */
-        padding: 8px;
-    }
-}
+/* Desktop View (large screens) */

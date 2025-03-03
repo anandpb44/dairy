@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register',views.register),
     path('',views.user_login),
+    path('otp_login',views.otp_login),
+
     path('logout',views.user_logout),
     path('home',views.home),
     path('validate/<name>/<password>/<email>/<otp>',views.validate,name="validate"),
