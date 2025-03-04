@@ -27,7 +27,8 @@ urlpatterns = [
 
     path('logout',views.user_logout),
     path('home',views.home),
-    path('validate/<name>/<password>/<email>/<otp>',views.validate,name="validate"),
+    path('validate_reg/<name>/<password>/<email>/<otp>',views.validate,name="validate"),
+    path('validate',views.validate_login),
     path('add_doc',views.add_doc),
     path('add_img',views.add_img),
     path('add_mes',views.add_message),

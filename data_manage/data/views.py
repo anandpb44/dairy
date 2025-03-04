@@ -11,9 +11,41 @@ from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 
 
+def user_login(req):
+    if req.method == "POST":
+        username = req.POST['username']
+        password = req.POST['password']
+
+        user = authenticate(req, username=username, password=password)
+
+        if user is not None:
+            # Generate and store OTP
+            otp = generate_otp()
+            req.session['otp'] = otp
+            req.session['login_user'] = username  # Store username in session
+
+            # Send OTP via email
+            send_mail(
+                'Your OTP for Login',
+                f'Your OTP is: {otp}',
+                settings.EMAIL_HOST_USER,
+                [user.email]
+            )
+
+            messages.success(req, "An OTP has been sent to your email. Please verify to continue.")
+            return redirect(otp_login)
+
+        else:
+            messages.error(req, "Invalid username or password!")
+
+    return render(req, 'login.html')
+
+def home(req):
+    return render(req,'home.html')
 
 def generate_otp():
     return ''.join(random.choices("0123456789", k=6))
+
 def otp_login(req):
     if req.method == "POST":
         entered_otp = req.POST['otp']
@@ -58,34 +90,7 @@ def otp_login(req):
 
 #     return render(req, 'login.html')
 
-def user_login(req):
-    if req.method == "POST":
-        username = req.POST['username']
-        password = req.POST['password']
 
-        user = authenticate(req, username=username, password=password)
-
-        if user is not None:
-            # Generate and store OTP
-            otp = generate_otp()
-            req.session['otp'] = otp
-            req.session['login_user'] = username  # Store username in session
-
-            # Send OTP via email
-            send_mail(
-                'Your OTP for Login',
-                f'Your OTP is: {otp}',
-                settings.EMAIL_HOST_USER,
-                [user.email]
-            )
-
-            messages.success(req, "An OTP has been sent to your email. Please verify to continue.")
-            return redirect(otp_login)
-
-        else:
-            messages.error(req, "Invalid username or password!")
-
-    return render(req, 'login.html')
 
 def validate_login(req):
     if req.method == "POST":
@@ -117,11 +122,11 @@ def validate_login(req):
                 del req.session['pending_user']
                 del req.session['otp']
 
-                return redirect('home')
+                return redirect(home)
 
         else:
             messages.error(req, "Invalid OTP! Please try again.")
-            return redirect('validate_login')
+            return redirect(validate_login)
 
     return render(req, 'validate_login.html')
 
@@ -170,11 +175,11 @@ def register(req):
         
         if password != confirm_password:
             messages.error(req, "Passwords do not match!")
-            return redirect('register')
+            return redirect(register)
 
         if User.objects.filter(email=email).exists():
             messages.error(req, "Email is already registered!")
-            return redirect('register')
+            return redirect(register)
 
         # Generate OTP
         otp = generate_otp()
@@ -192,7 +197,7 @@ def register(req):
         )
 
         messages.success(req, "Registration successful! Check your email for the OTP.")
-        return redirect('validate_login')
+        return redirect("validate",name=username,password=password,email=email,otp=otp)
 
     return render(req, 'register.html')
 
@@ -210,9 +215,7 @@ def validate(req,name,password,email,otp):
     else:
         return render(req,'validate.html',{'name':name,"pass":password,'emai':email,'otp':otp})
 
-def home(req):
-    data=User.objects.get(username=req.session['user'])
-    return render(req,'home.html',{'data':data})
+
 
 def add_doc(req):
     if req.method == 'POST':
