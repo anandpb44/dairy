@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="{% static 'reg.css' %}"> <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{% static 'reg.css' %}"> 
 </head>
 <body>
     <div class="container">
@@ -23,5 +23,80 @@
         </form>
         <p>Already have an account? <a href="login">Login</a></p>
     </div>
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'reg.css' %}"> 
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+        <form id="registerForm" action=" register" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+        
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <span id="password-strength" class="error"></span><br>
+        
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+            <span id="confirm-password-error" class="error"></span><br>
+        
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login">Login</a></p>
+    </div>
+    <script>
+        document.getElementById("password").addEventListener("input", function () {
+            let password = this.value;
+            let strengthText = document.getElementById("password-strength");
+        
+            let conditions = [
+                (/.{8,}/.test(password)),  // At least 8 characters
+                (/[A-Z]/.test(password)),  // At least one uppercase letter
+                (/[a-z]/.test(password)),  // At least one lowercase letter
+                (/[0-9]/.test(password)),  // At least one number
+                (/[\W_]/.test(password))   // At least one special character
+            ];
+        
+            let strength = conditions.filter(Boolean).length;
+        
+            if (strength === 5) {
+                strengthText.textContent = "Strong password ✅";
+                strengthText.classList.remove("error");
+                strengthText.classList.add("valid");
+            } else if (strength >= 3) {
+                strengthText.textContent = "Moderate password (Add more variety)";
+                strengthText.classList.add("error");
+            } else {
+                strengthText.textContent = "Weak password ❌ (Use uppercase, numbers, special chars)";
+                strengthText.classList.add("error");
+            }
+        });
+        
+        // Confirm password validation
+        document.getElementById("confirm_password").addEventListener("input", function () {
+            let password = document.getElementById("password").value;
+            let confirmPassword = this.value;
+            let errorText = document.getElementById("confirm-password-error");
+        
+            if (password !== confirmPassword) {
+                errorText.textContent = "Passwords do not match!";
+            } else {
+                errorText.textContent = "";
+            }
+        });
+        </script>
 </body>
 </html>
