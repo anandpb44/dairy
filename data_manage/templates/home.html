@@ -1,3 +1,100 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pocket Data</title>
+ 
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <ul>
+            <li>
+                <h4 style="font-style: italic;">Hi, {{ user.first_name }}</h4>
+            </li>
+            <li><a href="home"><img src="{% static 'img/home.png' %}" alt="Home"></a></li>
+            <li><a href="documents/"><img src="{% static 'img/documents.png' %}" alt="Documents"></a></li>
+            <li><a href="images/"><img src="{% static 'img/image2.png' %}" alt="Images"></a></li>
+            <li><a href="messages/"><img src="{% static 'img/message.png' %}" alt="Messages"></a></li>
+            <li><a href="logout"><img src="{% static 'img/logout.png' %}" alt="Logout"></a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h1 class="text-primary">📄 Documents</h1>
+
+        {% if documents %}
+            <div class="row">
+                {% for document in documents %}
+                    {% if document.file_type == 'pdf' %}
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <a href="{{ document.file.url }}">
+                                    <img class="card-img-top" src="{% static 'img/pdf.png' %}" alt="pdf" style="width: 100%">
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ document.title }}</h4>
+                                    
+                                </div>
+                              
+                            </div>
+                          
+                        </div>
+                    {% elif document.file_type == 'docx' %}
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <a href="https://docs.google.com/viewer?url={{ document.file.url }}" target="_blank">
+                                    <img class="card-img-top" src="{% static 'img/docx.png' %}" alt="docx" style="width: 100%">
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ document.title }}</h4>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <a href="https://docs.google.com/viewer?url={{ document.file.url }}" >
+                                    <img class="card-img-top" src="{% static 'img/google-docs.png' %}" alt="Google Docs" style="width: 100%">
+                                </a>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ document.title }}</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No documents uploaded.</p>
+        {% endif %}
+
+        <h1 class="text-primary mt-4">🖼️ Images</h1>
+        <div class="image-gallery">
+            {% if data1 %}
+                {% for img in data1 %}
+                
+                    <img src="{{ img.image.url }}" alt="Image">
+                
+                {% endfor %}
+           
+            {% else %}
+                <p class="text-muted">No images available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+</body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,12 +113,9 @@
     <nav class="sidebar">
         <ul>
             <li>
-                <h4 style="font-style: italic;font-family: 'Times New Roman', Times, serif;">Hi, {{ user.first_name }}</h4>
+                <h4 style="font-style: italic;">Hi, {{ user.first_name }}</h4>
             </li>
             <li><a href="home"><img src="{% static 'img/home.png' %}" alt="Home"></a></li>
-            <li><a href="add_doc"><img src="{% static 'img/add.png' %}" alt="Add Document"></a></li>
-            <li><a href="add_img"><img src="{% static 'img/image.png' %}" alt="Add Image"></a></li>
-            <li><a href="add_mes"><img src="{% static 'img/comment.png' %}" alt="Add Message"></a></li>
             <li><a href="documents/"><img src="{% static 'img/documents.png' %}" alt="Documents"></a></li>
             <li><a href="images/"><img src="{% static 'img/image2.png' %}" alt="Images"></a></li>
             <li><a href="messages/"><img src="{% static 'img/message.png' %}" alt="Messages"></a></li>
@@ -31,39 +125,54 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <h2>STORE YOUR DATA HERE</h2>
-    
-        <!-- Cards Wrapper Container (Flexbox) -->
-        <div class="card-container">
-            <!-- First Card -->
-            <div class="card">
-                <a href="add_doc">
-                    <img class="card-img-top" src="{% static 'img/add.png' %}" alt="Card image" style="width:100%">
-                    <div class="card-body">
-                        <!-- Card content (if any) can be added here -->
-                    </div>
-                </a>
-            </div>
-    
-            <!-- Second Card -->
-            <div class="card">
-                <a href="add_img">
-                    <img class="card-img-top" src="{% static 'img/image.png' %}" alt="Card image" style="width:100%">
-                    <div class="card-body">
-                        <!-- Card content (if any) can be added here -->
-                    </div>
-                </a>
-            </div>
-    
-            <!-- Third Card -->
-            <div class="card">
-                <a href="add_mes">
-                    <img class="card-img-top" src="{% static 'img/comment.png' %}" alt="Card image" style="width:100%">
-                    <div class="card-body">
-                        <!-- Card content (if any) can be added here -->
-                    </div>
-                </a>
-            </div>
+        
+        <!-- Documents Section -->
+        <div class="container mt-4">
+            <h1 class="text-primary">📄 Documents</h1>
+
+            {% if documents %}
+                <div class="row d-flex justify-content-start">
+                    {% for document in documents %}
+                        <div class="col-md-2 mb-4">
+                            <div class="card shadow">
+                                <a href="{{ document.file.url }}" target="_blank">
+                                    {% if document.file_type == 'pdf' %}
+                                        <img class="card-img-top p-2" src="{% static 'img/pdf.png' %}" alt="pdf">
+                                    {% elif document.file_type == 'docx' %}
+                                        <img class="card-img-top p-2" src="{% static 'img/docx.png' %}" alt="docx">
+                                    {% else %}
+                                        <img class="card-img-top p-2" src="{% static 'img/google-docs.png' %}" alt="Google Docs">
+                                    {% endif %}
+                                </a>
+                                <div class="card-body text-center">
+                                    <h6 class="card-title text-truncate">{{ document.title }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted text-center">No documents uploaded.</p>
+            {% endif %}
         </div>
+
+        <!-- Images Section -->
+        <div class="container mt-4">
+            <h1 class="text-primary">🖼️ Images</h1>
+            {% if data1 %}
+                <div class="image-gallery">
+                    {% for img in data1 %}
+                        <div class="image-box">
+                            <img src="{{ img.image.url }}" alt="Image">
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted text-center">No images available.</p>
+            {% endif %}
+        </div>
+
     </div>
-    
+
+</body>
+</html>

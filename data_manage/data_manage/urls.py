@@ -22,7 +22,7 @@ from data import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register',views.register),
-    path('',views.user_login),
+    path('',views.user_login,name='user_login'),
     path('otp_login',views.otp_login),
 
     path('logout',views.user_logout),

@@ -43,12 +43,8 @@
            
            
             <li><a href="../home"><img src="../static/img/home.png" alt=""></a></li>
-            <li><a href="../add_doc"><img src="../static/img/add.png" alt=""></a></li>
-            <li><a href="../add_img"><img src="../static/img/image.png" alt=""></a></li>
-            <li><a href="../add_mes"><img src="../static/img/comment.png" alt=""></a></li>
             <li><a href="../documents/"><img src="../static/img/documents.png" alt=""></a></li>
             <li><a href="../images/"><img src="../static/img/image2.png" alt=""></a></li>
-            <li><a href="../messages/"><img src="../static/img/message.png" alt=""></a></li>
             <li><a href="../logout"><img src="../static/img/logout.png" alt=""></a></li>
         </ul>
     </nav>
@@ -63,12 +59,22 @@
                     <strong>{{ message.title }}</strong>
                     <strong>{{message.created_at}}</strong>
                     <p class="message-content">{{ message.content }}</p>
-                    <a href="../mess_delete/{{message.pk}}" type="button" class="btn btn-danger">Delete</a>
+                    <a href="../mess_delete/{{message.pk}}" type="button" class="btn btn-danger" onclick="return confirmDelete()">Delete</a>
                 </div>
             {% endfor %}
         {% else %}
             <h6>No messages available.</h6>
         {% endif %}
     </div>
+    <div class="add_items">
+        <a href="../add_mes">
+            <img src="{% static 'img/plus.png' %}" alt="Add" width="100" height="100">
+        </a>
+    </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this document?");
+        }
+    </script>
 </body>
 </html>

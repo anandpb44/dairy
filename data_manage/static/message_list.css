@@ -93,6 +93,16 @@ h2,h6{
     font-size: 14px;
 }
 
+.add_items{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {

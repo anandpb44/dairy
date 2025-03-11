@@ -40,8 +40,7 @@ def user_login(req):
 
     return render(req, 'login.html')
 
-def home(req):
-    return render(req,'home.html')
+
 
 def generate_otp():
     return ''.join(random.choices("0123456789", k=6))
@@ -208,7 +207,7 @@ def validate(req,name,password,email,otp):
             data=User.objects.create_user(first_name=name,email=email,password=password,username=email)
             data.save()
             messages.success(req,"OTP verified Successfully")
-            return redirect(user_login)
+            return redirect('user_login')
         else:
             messages.error(req,"invalid Otp")
             return redirect("validate",name=name,password=password,email=email,otp=otp)
@@ -251,6 +250,23 @@ def add_message(req):
     else:
         form=DiaryEntryForm()
     return render(req,'add_mes.html',{'form':form})
+
+
+def home(req):
+    img=Image.objects.all()
+    documents = Document.objects.filter(user=req.user)[::-1]
+    
+    for document in documents:
+        if document.file.name.endswith('.pdf'):
+            document.file_type = 'pdf'
+        elif document.file.name.endswith('.doc') :
+            document.file_type = 'doc'
+        elif document.file.name.endswith('.docx'):
+            document.file_type='docx'
+        else:
+            document.file_type = 'other'
+
+    return render(req,'home.html',{'documents': documents,'data1':img}) 
 
 def document_list(req):
     documents = Document.objects.filter(user=req.user)[::-1]

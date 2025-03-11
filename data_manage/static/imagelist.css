@@ -94,22 +94,14 @@ h2 {
     font-size: 14px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 60px;
-    }
-
-    .sidebar ul li a img {
-        width: 30px;
-        height: 30px;
-    }
-
-    .container {
-        margin-left: 80px;
-    }
-
-    .card-img-top {
-        height: 150px;
-    }
+.add_items{
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 150px;
+    height: 150px;
 }
+
+

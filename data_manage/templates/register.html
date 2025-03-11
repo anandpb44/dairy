@@ -55,7 +55,7 @@
         
             <button type="submit">Register</button>
         </form>
-        <p>Already have an account? <a href="login">Login</a></p>
+        <p>Already have an account? <a href="{% url 'user_login' %}">Login</a></p>
     </div>
     <script>
         document.getElementById("password").addEventListener("input", function () {
