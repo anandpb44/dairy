@@ -1,127 +1,176 @@
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-}
-
 /* Sidebar */
 .sidebar {
+    width: 250px;
+    background-color: #f1f3f4;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
-    width: 150px;
-    height: 100vh;
-    background: #68a8e7;
     padding-top: 20px;
-    transition: 0.3s;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
-    padding: 20px 0;
-    text-align: center;
+    margin: 20px 0;
 }
 
 .sidebar ul li a {
-    color: white;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    flex-direction: column;
-    white-space: nowrap;
+    color: #333;
+    display: block;
+    padding-left: 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.sidebar ul li a img {
-    width: 40px;
-    height: 40px;
+.sidebar ul li a:hover {
+    background-color: #ddd;
+    border-radius: 5px;
 }
 
-/* Responsive Sidebar */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 70px;
-    }
-    
-    .sidebar ul li a {
-        font-size: 12px;
-    }
-
-    .sidebar ul li a img {
-        width: 30px;
-        height: 30px;
-    }
+.sidebar img {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
 }
 
-/* Cards */
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+/* Container */
+.container {
+    margin-left: 270px;
     padding: 20px;
-    margin-left: 170px;
 }
 
+h2 {
+    font-size: 1.8rem;
+    color: #4285F4;
+}
+
+/* Card Styling */
 .card {
-    border-radius: 12px;
-    transition: 0.3s;
-    background: white;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.card img {
-    width: 100%;
-    border-radius: 12px 12px 0 0;
+.card-img-top {
+    border-radius: 10px 10px 0 0;
+    height: 150px;
+    object-fit: contain;
 }
 
-/* Responsive Cards */
-@media (max-width: 768px) {
-    .card-container {
-        margin-left: 80px;
-        grid-template-columns: 1fr;
-    }
+.card-body {
+    text-align: center;
+    padding: 15px;
 }
 
-/* Floating Add Button */
+.card-body h4 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.btn-primary,
+.btn-danger {
+    font-size: 0.9rem;
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #d32f2f;
+}
+
+.btn-primary {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3367D6;
+}
+
+/* Add Items Button */
 .add_items {
     position: fixed;
-    right: 20px;
     bottom: 20px;
-    width: 60px;
-    height: 60px;
-    background: #007bff;
-    color: white;
+    right: 20px;
+    z-index: 1000;
+}
+
+.add_items img {
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
+    background-color: #4285F4;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.add_items:hover {
-    background: #0056b3;
-    transform: scale(1.1);
+/* No Data Message */
+.no-data {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
 }
 
-/* Responsive Floating Button */
+/* Sidebar Toggle Button for Small Screens */
+.toggle-sidebar {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #4285F4;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .add_items {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
+    .sidebar {
+        transform: translateX(-250px);
+        height: 100vh;
+        width: 250px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        transition: transform 0.3s ease-in-out;
+        z-index: 1001;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .container {
+        margin-left: 0;
+        padding-top: 60px;
+    }
+
+    .toggle-sidebar {
+        display: block;
     }
 }

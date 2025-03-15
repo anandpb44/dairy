@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     {% load static %}
@@ -16,5 +16,24 @@
         <button type="submit">Verify</button>
     </form>
     
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="{% static 'otp_log.css' %}">
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Enter OTP:</label>
+        <input type="text" name="otp" maxlength="6" required>
+        <button type="submit">Verify</button>
+    </form>
 </body>
 </html>

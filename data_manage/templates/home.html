@@ -1,85 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pocket Data</title>
- 
-    <link rel="stylesheet" href="{% static 'home.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-
-    
-    <nav class="sidebar">
-        <ul>
-            <li>
-                <h4 style="font-style: italic;">Hi, {{ user.first_name }}</h4>
-            </li>
-            <li><a href="home"><img src="{% static 'img/home.png' %}" alt="Home"></a></li>
-            <li><a href="documents/"><img src="{% static 'img/documents.png' %}" alt="Documents"></a></li>
-            <li><a href="images/"><img src="{% static 'img/image2.png' %}" alt="Images"></a></li>
-            <li><a href="messages/"><img src="{% static 'img/message.png' %}" alt="Messages"></a></li>
-            <li><a href="logout"><img src="{% static 'img/logout.png' %}" alt="Logout"></a></li>
-        </ul>
-    </nav>
-
-    <div class="main-content">
-        
-    
-        <div class="container mt-4">
-            <h1 class="text-primary">📄 Documents</h1>
-
-            {% if documents %}
-                <div class="row d-flex justify-content-start">
-                    {% for document in documents %}
-                        <div class="col-md-2 mb-4">
-                            <div class="card shadow">
-                                <a href="{{ document.file.url }}" target="_blank">
-                                    {% if document.file_type == 'pdf' %}
-                                        <img class="card-img-top p-2" src="{% static 'img/pdf.png' %}" alt="pdf">
-                                    {% elif document.file_type == 'docx' %}
-                                        <img class="card-img-top p-2" src="{% static 'img/docx.png' %}" alt="docx">
-                                    {% else %}
-                                        <img class="card-img-top p-2" src="{% static 'img/google-docs.png' %}" alt="Google Docs">
-                                    {% endif %}
-                                </a>
-                                <div class="card-body text-center">
-                                    <h6 class="card-title text-truncate">{{ document.title }}</h6>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p class="text-muted text-center">No documents uploaded.</p>
-            {% endif %}
-        </div>
-
-        
-        <div class="container mt-4">
-            <h1 class="text-primary">🖼️ Images</h1>
-            {% if data1 %}
-                <div class="image-gallery">
-                    {% for img in data1 %}
-                        <div class="image-box">
-                            <img src="{{ img.image.url }}" alt="Image">
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p class="text-muted text-center">No images available.</p>
-            {% endif %}
-        </div>
-
-    </div>
-
-</body>
-</html> -->
-
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-        /* Sidebar */
+   
         .sidebar {
             width: 250px;
             background-color: #f1f3f4;
@@ -143,7 +62,6 @@
             margin-right: 10px;
         }
 
-        /* Main Content */
         .main-content {
             margin-left: 260px;
             padding: 20px;
@@ -156,7 +74,7 @@
             margin-bottom: 20px;
         }
 
-        /* Search Bar */
+  
         .search-bar {
             margin: 20px 0;
         }
@@ -170,7 +88,7 @@
             outline: none;
         }
 
-        /* File Grid */
+        
         .file-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -209,7 +127,7 @@
             overflow: hidden;
         }
 
-        /* Image Gallery */
+       
         .image-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -223,7 +141,7 @@
             border-radius: 8px;
         }
 
-        /* No Data */
+     
         .no-data {
             text-align: center;
             color: #888;
@@ -233,7 +151,7 @@
 </head>
 <body>
 
-    <!-- Sidebar -->
+ 
     <nav class="sidebar">
         <ul>
             <li>
@@ -247,15 +165,10 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
+   
     <div class="main-content">
         
-        <!-- Search Bar -->
-        <!-- <div class="search-bar">
-            <input type="text" placeholder="Search your files..." id="searchInput">
-        </div> -->
-
-        <!-- Documents Section -->
+   
         <div class="container mt-4">
             <h1 class="text-primary">📄 Documents</h1>
 
@@ -283,7 +196,6 @@
             {% endif %}
         </div>
 
-        <!-- Images Section -->
         <div class="container mt-4">
             <h1 class="text-primary">🖼️ Images</h1>
             {% if data1 %}
@@ -302,4 +214,87 @@
     </div>
 
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pocket Data</title>
+
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar Toggle Button -->
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <ul>
+            <li><h4>Hi, {{ user.first_name }}</h4></li>
+            <li><a href="home"><img src="{% static 'img/home.png' %}" alt="Home"> Home</a></li>
+            <li><a href="documents/"><img src="{% static 'img/documents.png' %}" alt="Documents"> Documents</a></li>
+            <li><a href="images/"><img src="{% static 'img/image2.png' %}" alt="Images"> Images</a></li>
+            <li><a href="messages/"><img src="{% static 'img/message.png' %}" alt="Messages"> Messages</a></li>
+            <li><a href="logout"><img src="{% static 'img/logout.png' %}" alt="Logout"> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container mt-4">
+            <h1 class="text-primary">📄 Documents</h1>
+            {% if documents %}
+                <div class="file-grid">
+                    {% for document in documents %}
+                        <div class="file-card">
+                            <a href="{{ document.file.url }}" target="_blank">
+                                {% if document.file_type == 'pdf' %}
+                                    <img src="{% static 'img/pdf.png' %}" alt="pdf">
+                                {% elif document.file_type == 'docx' %}
+                                    <img src="{% static 'img/docx.png' %}" alt="docx">
+                                {% else %}
+                                    <img src="{% static 'img/google-docs.png' %}" alt="Google Docs">
+                                {% endif %}
+                            </a>
+                            <div class="file-card-body">
+                                <h6>{{ document.title }}</h6>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-data">No documents uploaded.</p>
+            {% endif %}
+        </div>
+
+        <div class="container mt-4">
+            <h1 class="text-primary">🖼️ Images</h1>
+            {% if data1 %}
+                <div class="image-gallery">
+                    {% for img in data1 %}
+                        <div class="image-box">
+                            <img src="{{ img.image.url }}" alt="Image">
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-data">No images available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector(".sidebar").classList.toggle("active");
+        }
+    </script>
+
+</body>
 </html>
+
